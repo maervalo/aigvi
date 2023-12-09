@@ -6,6 +6,7 @@ import Floor from "./Floor";
 import Lights from "./Lights";
 import { useControls } from "leva";
 import CharacterModel from "./CharacterModel";
+import Portraits from "../src/portrait";
 
 export default function Experience() {
   /**
@@ -62,6 +63,7 @@ export default function Experience() {
             <CharacterModel />
           </Ecctrl>
         </KeyboardControls>
+        <Portraits />
 
         {/* Floor */}
         <Floor />
