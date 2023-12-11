@@ -10,7 +10,7 @@ import {
 } from "@react-three/rapier";
 import { useEffect, useRef, useMemo, type ReactNode, forwardRef, type RefObject } from "react";
 import * as THREE from "three";
-import { useControls } from "leva";
+import { folder, useControls } from "leva";
 import { useFollowCam } from "./hooks/useFollowCam";
 import { useGame } from "./stores/useGame";
 import { useJoystickControls } from "./stores/useJoystickControls";
@@ -142,9 +142,7 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
    * Debug settings
    */
   let characterControlsDebug = null;
-  let floatingRayDebug = null;
-  let slopeRayDebug = null;
-  let autoBalanceForceDebug = null;
+  let raySettingsDebug = null;
   if (debug) {
     // Character Controls
     characterControlsDebug = useControls(
@@ -253,10 +251,10 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
     moveImpulsePointY = characterControlsDebug.moveImpulsePointY;
     camFollowMult = characterControlsDebug.camFollowMult;
 
-    // Floating Ray
-    floatingRayDebug = useControls(
-      "Floating Ray",
-      {
+    // Nested folders Ray settings
+    raySettingsDebug = useControls('Ray settings', {
+      //Floating ray
+      'Floating Ray': folder({
         rayOriginOffest: {
           x: 0,
           y: -capsuleHalfHeight,
@@ -293,22 +291,9 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
           max: 3,
           step: 0.01,
         },
-      },
-      { collapsed: true }
-    );
-    // Apply debug values
-    rayOriginOffest = floatingRayDebug.rayOriginOffest;
-    rayHitForgiveness = floatingRayDebug.rayHitForgiveness;
-    rayLength = floatingRayDebug.rayLength;
-    rayDir = floatingRayDebug.rayDir;
-    floatingDis = floatingRayDebug.floatingDis;
-    springK = floatingRayDebug.springK;
-    dampingC = floatingRayDebug.dampingC;
-
-    // Slope Ray
-    slopeRayDebug = useControls(
-      "Slope Ray",
-      {
+      }),
+      // Slope Ray
+      'Slope Ray': folder({
         showSlopeRayOrigin: false,
         slopeMaxAngle: {
           value: slopeMaxAngle,
@@ -341,21 +326,9 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
           max: 5,
           step: 0.01,
         },
-      },
-      { collapsed: true }
-    );
-    // Apply debug values
-    showSlopeRayOrigin = slopeRayDebug.showSlopeRayOrigin;
-    slopeMaxAngle = slopeRayDebug.slopeMaxAngle;
-    slopeRayLength = slopeRayDebug.slopeRayLength;
-    slopeRayDir = slopeRayDebug.slopeRayDir;
-    slopeUpExtraForce = slopeRayDebug.slopeUpExtraForce;
-    slopeDownExtraForce = slopeRayDebug.slopeDownExtraForce;
-
-    // AutoBalance Force
-    autoBalanceForceDebug = useControls(
-      "AutoBalance Force",
-      {
+      }),
+      // AutoBalance Force
+      'AutoBalance Force': folder({
         autoBalance: {
           value: true,
         },
@@ -383,15 +356,33 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
           max: 0.1,
           step: 0.001,
         },
-      },
+      }),
+    },
       { collapsed: true }
     );
-    // Apply debug values
-    autoBalance = autoBalanceForceDebug.autoBalance;
-    autoBalanceSpringK = autoBalanceForceDebug.autoBalanceSpringK;
-    autoBalanceDampingC = autoBalanceForceDebug.autoBalanceDampingC;
-    autoBalanceSpringOnY = autoBalanceForceDebug.autoBalanceSpringOnY;
-    autoBalanceDampingOnY = autoBalanceForceDebug.autoBalanceDampingOnY;
+    // Apply floating ray debug values
+    rayOriginOffest = raySettingsDebug.rayOriginOffest;
+    rayHitForgiveness = raySettingsDebug.rayHitForgiveness;
+    rayLength = raySettingsDebug.rayLength;
+    rayDir = raySettingsDebug.rayDir;
+    floatingDis = raySettingsDebug.floatingDis;
+    springK = raySettingsDebug.springK;
+    dampingC = raySettingsDebug.dampingC;
+
+    // Apply debug values slope ray
+    showSlopeRayOrigin = raySettingsDebug.showSlopeRayOrigin;
+    slopeMaxAngle = raySettingsDebug.slopeMaxAngle;
+    slopeRayLength = raySettingsDebug.slopeRayLength;
+    slopeRayDir = raySettingsDebug.slopeRayDir;
+    slopeUpExtraForce = raySettingsDebug.slopeUpExtraForce;
+    slopeDownExtraForce = raySettingsDebug.slopeDownExtraForce;
+
+    // Apply debug values autobalance force
+    autoBalance = raySettingsDebug.autoBalance;
+    autoBalanceSpringK = raySettingsDebug.autoBalanceSpringK;
+    autoBalanceDampingC = raySettingsDebug.autoBalanceDampingC;
+    autoBalanceSpringOnY = raySettingsDebug.autoBalanceSpringOnY;
+    autoBalanceDampingOnY = raySettingsDebug.autoBalanceDampingOnY;
   }
 
   /**

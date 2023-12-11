@@ -1,4 +1,4 @@
-import { Grid, KeyboardControls } from "@react-three/drei";
+import { KeyboardControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { Physics } from "@react-three/rapier";
 import Ecctrl from "../src/Ecctrl";
@@ -6,7 +6,10 @@ import Floor from "./Floor";
 import Lights from "./Lights";
 import { useControls } from "leva";
 import CharacterModel from "./CharacterModel";
-import Portraits from "../src/portrait";
+import Emotan from "../src/EmotanPortrait";
+import PortalMasks from "../src/PortalMasks";
+import Walls from "../src/Walls";
+import Portal from "../src/Portal";
 
 export default function Experience() {
   /**
@@ -36,13 +39,6 @@ export default function Experience() {
     <>
       <Perf position="top-left" minimal />
 
-      <Grid
-        args={[300, 300]}
-        sectionColor={"lightgray"}
-        cellColor={"gray"}
-        position={[0, -0.99, 0]}
-        userData={{ camExcludeCollision: true }} // this won't be collide by camera ray
-      />
 
       <Lights />
 
@@ -63,7 +59,12 @@ export default function Experience() {
             <CharacterModel />
           </Ecctrl>
         </KeyboardControls>
-        <Portraits />
+
+        {/* Portraits */}
+        <Emotan />
+        <PortalMasks />
+        <Walls />
+        <Portal />
 
         {/* Floor */}
         <Floor />
