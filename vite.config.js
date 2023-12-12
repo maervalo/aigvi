@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import * as path from 'node:path'
 import react from '@vitejs/plugin-react'
+import glsl from 'vite-plugin-glsl';
 
 const isCodeSandbox = 'SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env
 
 const dev = defineConfig({
-  plugins: [react()],
+  plugins: [react(), glsl()],
   root: 'example/',
   publicDir: "../public/",
   base: './',
