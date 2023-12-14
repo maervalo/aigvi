@@ -6,14 +6,14 @@ import portalVertexShader from "./shaders/vertex.glsl";
 import portalFragmentShader from "./shaders/fragment.glsl";
 
 export default function Portal() {
-    const portal = useGLTF("./Portal.glb");
+    const portal = useGLTF("./portal5.glb");
 
     // Create shader material for the portal
     const portalLightMaterial = useRef(new THREE.ShaderMaterial({
         uniforms: {
             uTime: { value: 0 },
-            uColorStart: { value: new THREE.Color(0xff0000) },
-            uColorEnd: { value: new THREE.Color(0x0000ff) },
+            uColorStart: { value: new THREE.Color(0xeeeeee) },
+            uColorEnd: { value: new THREE.Color(0xffffff) },
         },
         vertexShader: portalVertexShader,
         fragmentShader: portalFragmentShader,

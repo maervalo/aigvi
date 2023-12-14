@@ -10,8 +10,18 @@ import Emotan from "../src/EmotanPortrait";
 import PortalMasks from "../src/PortalMasks";
 import Walls from "../src/Walls";
 import Portal from "../src/Portal";
+import Collider from "../src/collider";
+import RightEyes from "../src/Eyes";
+//import { useState } from "react";
+//import PageLoader from "../src/PageLoader";
 
 export default function Experience() {
+
+  //const [isLoading, setIsLoading] = useState(false);
+  // Handler for collision events
+  //const handleCollision = () => {
+  //setIsLoading(true);
+
   /**
    * Debug settings
    */
@@ -37,9 +47,11 @@ export default function Experience() {
 
   return (
     <>
+      {/* Conditionally render the PageLoader 
+        {isLoading && <PageLoader />}*/}
       <Perf position="top-left" minimal />
-
-
+      {/* Collider with the collision handler 
+        <Collider onCollision={handleCollision} />*/}
       <Lights />
 
       <Physics debug={physics} timeStep="vary">
@@ -65,6 +77,8 @@ export default function Experience() {
         <PortalMasks />
         <Walls />
         <Portal />
+        <Collider />
+        <RightEyes />
 
         {/* Floor */}
         <Floor />
