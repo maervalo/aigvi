@@ -3,143 +3,148 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 export const useGame = /* @__PURE__ */ create(
   /* @__PURE__ */ subscribeWithSelector<State>((set) => {
-    return {
-      /**
-       * Character animations state manegement
-       */
-      // Initial animation
-      curAnimation: null as string,
-      animationSet: {} as AnimationSet,
+  return {
+    /**
+     * Character animations state manegement
+     */
+    // Initial animation
+    curAnimation: null as string,
+    animationSet: {} as AnimationSet,
 
-      initializeAnimationSet: (animationSet: AnimationSet) => {
-        set((state) => {
-          if (Object.keys(state.animationSet).length === 0) {
-            return { animationSet };
-          }
-          return {};
-        });
-      },
+    initializeAnimationSet: (animationSet: AnimationSet) => {
+      set((state) => {
+        if (Object.keys(state.animationSet).length === 0) {
+          return { animationSet };
+        }
+        return {};
+      });
+    },
 
-      reset: () => {
-        set((state) => {
+    reset: () => {
+      set((state) => {
+        return { curAnimation: state.animationSet.idle };
+      });
+    },
+
+    idle: () => {
+      set((state) => {
+        if (state.curAnimation === state.animationSet.jumpIdle) {
+          return { curAnimation: state.animationSet.jumpLand };
+        } else if (
+          state.curAnimation !== state.animationSet.action1 &&
+          state.curAnimation !== state.animationSet.action2 &&
+          state.curAnimation !== state.animationSet.action3 &&
+          state.curAnimation !== state.animationSet.action4
+        ) {
           return { curAnimation: state.animationSet.idle };
-        });
-      },
+        }
+        return {};
+      });
+    },
 
-      idle: () => {
-        set((state) => {
-          if (state.curAnimation === state.animationSet.jumpIdle) {
-            return { curAnimation: state.animationSet.jumpLand };
-          } else if (
-            state.curAnimation !== state.animationSet.action1 &&
-            state.curAnimation !== state.animationSet.action2 &&
-            state.curAnimation !== state.animationSet.action3 &&
-            state.curAnimation !== state.animationSet.action4
-          ) {
-            return { curAnimation: state.animationSet.idle };
-          }
-          return {};
-        });
-      },
+    walk: () => {
+      set((state) => {
+        if (state.curAnimation !== state.animationSet.action4) {
+          return { curAnimation: state.animationSet.walk };
+        }
+        return {};
+      });
+    },
 
-      walk: () => {
-        set((state) => {
-          if (state.curAnimation !== state.animationSet.action4) {
-            return { curAnimation: state.animationSet.walk };
-          }
-          return {};
-        });
-      },
+    run: () => {
+      set((state) => {
+        if (state.curAnimation !== state.animationSet.action4) {
+          return { curAnimation: state.animationSet.run };
+        }
+        return {};
+      });
+    },
 
-      run: () => {
-        set((state) => {
-          if (state.curAnimation !== state.animationSet.action4) {
-            return { curAnimation: state.animationSet.run };
-          }
-          return {};
-        });
-      },
+    jump: () => {
+      set((state) => {
+        return { curAnimation: state.animationSet.jump };
+      });
+    },
 
-      jump: () => {
-        set((state) => {
-          return { curAnimation: state.animationSet.jump };
-        });
-      },
+    jumpIdle: () => {
+      set((state) => {
+        if (state.curAnimation === state.animationSet.jump) {
+          return { curAnimation: state.animationSet.jumpIdle };
+        }
+        return {};
+      });
+    },
 
-      jumpIdle: () => {
-        set((state) => {
-          if (state.curAnimation === state.animationSet.jump) {
-            return { curAnimation: state.animationSet.jumpIdle };
-          }
-          return {};
-        });
-      },
+    jumpLand: () => {
+      set((state) => {
+        if (state.curAnimation === state.animationSet.jumpIdle) {
+          return { curAnimation: state.animationSet.jumpLand };
+        }
+        return {};
+      });
+    },
 
-      jumpLand: () => {
-        set((state) => {
-          if (state.curAnimation === state.animationSet.jumpIdle) {
-            return { curAnimation: state.animationSet.jumpLand };
-          }
-          return {};
-        });
-      },
+    fall: () => {
+      set((state) => {
+        return { curAnimation: state.animationSet.fall };
+      });
+    },
 
-      fall: () => {
-        set((state) => {
-          return { curAnimation: state.animationSet.fall };
-        });
-      },
+    action1: () => {
+      set((state) => {
+        if (state.curAnimation === state.animationSet.idle) {
+          return { curAnimation: state.animationSet.action1 };
+        }
+        return {};
+      });
+    },
 
-      action1: () => {
-        set((state) => {
-          if (state.curAnimation === state.animationSet.idle) {
-            return { curAnimation: state.animationSet.action1 };
-          }
-          return {};
-        });
-      },
+    action2: () => {
+      set((state) => {
+        if (state.curAnimation === state.animationSet.idle) {
+          return { curAnimation: state.animationSet.action2 };
+        }
+        return {};
+      });
+    },
 
-      action2: () => {
-        set((state) => {
-          if (state.curAnimation === state.animationSet.idle) {
-            return { curAnimation: state.animationSet.action2 };
-          }
-          return {};
-        });
-      },
+    action3: () => {
+      set((state) => {
+        if (state.curAnimation === state.animationSet.idle) {
+          return { curAnimation: state.animationSet.action3 };
+        }
+        return {};
+      });
+    },
 
-      action3: () => {
-        set((state) => {
-          if (state.curAnimation === state.animationSet.idle) {
-            return { curAnimation: state.animationSet.action3 };
-          }
-          return {};
-        });
-      },
+    action4: () => {
+      set((state) => {
+        if (
+          state.curAnimation === state.animationSet.idle ||
+          state.curAnimation === state.animationSet.walk ||
+          state.curAnimation === state.animationSet.run
+        ) {
+          return { curAnimation: state.animationSet.action4 };
+        }
+        return {};
+      });
+    },
 
-      action4: () => {
-        set((state) => {
-          if (
-            state.curAnimation === state.animationSet.idle ||
-            state.curAnimation === state.animationSet.walk ||
-            state.curAnimation === state.animationSet.run
-          ) {
-            return { curAnimation: state.animationSet.action4 };
-          }
-          return {};
-        });
-      },
+    /**
+           * Collision state and methods
+           */
+    collisionDetected: false,
 
-      /**
-       * Additional animations
-       */
-      // triggerFunction: ()=>{
-      //    set((state) => {
-      //        return { curAnimation: state.animationSet.additionalAnimation };
-      //    });
-      // }
-    };
-  })
+    triggerCollision: () => {
+      set({ collisionDetected: true });
+    },
+
+    resetCollision: () => {
+      set({ collisionDetected: false });
+    },
+
+  };
+})
 );
 
 export type AnimationSet = {
@@ -162,6 +167,10 @@ type State = {
   animationSet: AnimationSet;
   initializeAnimationSet: (animationSet: AnimationSet) => void;
   reset: () => void;
+  //In this file, the Zustand store useGame now has additional capabilities to handle collision detection. This includes the collisionDetected boolean flag and the triggerCollision and resetCollision methods, which can be used across your components to manage and respond to collision events.
+  collisionDetected: boolean;
+  triggerCollision: () => void;
+  resetCollision: () => void;
 } & {
-  [key in keyof AnimationSet]: () => void;
-};
+    [key in keyof AnimationSet]: () => void;
+  };

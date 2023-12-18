@@ -12,15 +12,25 @@ import Walls from "../src/Walls";
 import Portal from "../src/Portal";
 import Collider from "../src/collider";
 import RightEyes from "../src/Eyes";
+import Stentavla from "../src/Stentavla";
+
+import { useGame } from "../src/Ecctrl";
+import { useEffect } from "react";
 //import { useState } from "react";
 //import PageLoader from "../src/PageLoader";
 
 export default function Experience() {
 
-  //const [isLoading, setIsLoading] = useState(false);
-  // Handler for collision events
-  //const handleCollision = () => {
-  //setIsLoading(true);
+  /*const { collisionDetected, resetCollision } = useGame((state) => state);
+
+  useEffect(() => {
+    if (collisionDetected) {
+      console.log("Collision detected in Experience.tsx");
+      // Additional logic for handling collision...
+      // Reset the collision state if necessary
+      resetCollision();
+    }
+  }, [collisionDetected, resetCollision]);
 
   /**
    * Debug settings
@@ -71,9 +81,10 @@ export default function Experience() {
             <CharacterModel />
           </Ecctrl>
         </KeyboardControls>
-
         {/* Portraits */}
+        <Stentavla />
         <Emotan />
+
         <PortalMasks />
         <Walls />
         <Portal />
