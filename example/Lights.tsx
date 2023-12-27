@@ -8,6 +8,8 @@ export default function Lights() {
   // Removed useHelper to stop showing the visual representation of the light source
   //useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1);
 
+
+
   return (
     <>
       <directionalLight

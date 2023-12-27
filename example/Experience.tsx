@@ -6,11 +6,28 @@ import Floor from "./Floor";
 import Lights from "./Lights";
 import { useControls } from "leva";
 import CharacterModel from "./CharacterModel";
-import Emotan from "../src/EmotanPortrait";
 import PortalMasks from "../src/PortalMasks";
 import Walls from "../src/Walls";
 import Portal from "../src/Portal";
 import Collider from "../src/collider";
+import PyramidFront from "../src/portraits/PyramidFront";
+import RightSaintMaurice from "../src/portraits/rightSaintMaurice";
+import RightKubaMasquerade from "../src/portraits/rightKubaMasquerade";
+import RightNubienKermaSudan from "../src/portraits/rightNubienKermaSudan";
+import RightKimpaVita from "../src/portraits/rightKimpaVita";
+import RightBeninBronzes from "../src/portraits/rightBeninBronzes";
+import RightSaidOfMogadishu from "../src/portraits/rightSaidOfMogadishu";
+import RightDonFransciscoDeArobe from "../src/portraits/rightDonFransiscoDeAdobe";
+import BackGriots from "../src/portraits/backGriots";
+import BackQueenNzinga from "../src/portraits/backQueenNzinga";
+import BackMinoMothers from "../src/portraits/backMinoMothers";
+import BackQueenNzinga2 from "../src/portraits/backQueenNzinga2";
+import BackHaiti from "../src/portraits/backHaiti";
+import MiddleLeftDogonHouse from "../src/portraits/middleLeftDogonHouse";
+import MiddleLeftKimpaVita from "../src/portraits/middleLeftKimpaVita";
+import MiddleLeftMaliEmpire from "../src/portraits/middleLeftMaliEmpire";
+import MiddleLeftTimbuktu from "../src/portraits/middleLeftTimbuktu";
+import MiddleLeftMansaMusaMap from "../src/portraits/middleLeftMansaMusaMap";
 //import { useState } from "react";
 //import PageLoader from "../src/PageLoader";
 
@@ -69,7 +86,24 @@ export default function Experience() {
           </Ecctrl>
         </KeyboardControls>
         {/* Portraits */}
-        <Emotan />
+        <PyramidFront />
+        <RightSaintMaurice />
+        <RightKubaMasquerade />
+        <RightNubienKermaSudan />
+        <RightKimpaVita />
+        <RightBeninBronzes />
+        <RightSaidOfMogadishu />
+        <RightDonFransciscoDeArobe />
+        <BackGriots />
+        <BackQueenNzinga />
+        <BackMinoMothers />
+        <BackQueenNzinga2 />
+        <BackHaiti />
+        <MiddleLeftDogonHouse />
+        <MiddleLeftKimpaVita />
+        <MiddleLeftMaliEmpire />
+        <MiddleLeftTimbuktu />
+        <MiddleLeftMansaMusaMap />
 
         <PortalMasks />
         <Walls />

@@ -6,7 +6,7 @@ import { useControls } from "leva";
 
 export default function Walls() {
     // Load models
-    const walls = useGLTF("./Walls.glb");
+    const walls = useGLTF("./Walls2.glb");
 
     // Load the baked texture
     const bakedTexture = useTexture("/textures/blackwalls.jpg");

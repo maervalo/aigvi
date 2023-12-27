@@ -58,7 +58,7 @@ body,
   }
 }
 
-.loading-bar
+/*.loading-bar
 {
     position: absolute;
     top: 50%;
@@ -75,4 +75,4 @@ body,
     transform: scaleX(0);
     transform-origin: 100% 0;
     transition: transform 1.5s ease-in-out;
-}
+}*/

@@ -6,7 +6,7 @@ import portalVertexShader from "./shaders/vertex.glsl";
 import portalFragmentShader from "./shaders/fragment.glsl";
 
 export default function Portal() {
-    const portal = useGLTF("./portal5.glb");
+    const portal = useGLTF("./Portal6.glb");
 
     // Create shader material for the portal
     const portalLightMaterial = useRef(new THREE.ShaderMaterial({
